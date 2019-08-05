@@ -6,6 +6,13 @@
 	- [Authenticate](#authenticate)
 	- [Authenticate with Github](#authenticate-with-github)
 	
+- [Note](#note)
+	- [Create note](#create-note)
+	- [Delete note](#delete-note)
+	- [Retrieve note](#retrieve-note)
+	- [Retrieve notes](#retrieve-notes)
+	- [Update note](#update-note)
+	
 - [PasswordReset](#passwordreset)
 	- [Send email](#send-email)
 	- [Submit password](#submit-password)
@@ -54,6 +61,86 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Github user accessToken.</p>							|
+
+# Note
+
+## Create note
+
+
+
+	POST /notes
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| title			| 			|  <p>Note's title.</p>							|
+| body			| 			|  <p>Note's body.</p>							|
+| tags			| 			|  <p>Note's tags.</p>							|
+| owner			| 			|  <p>Note's owner.</p>							|
+
+## Delete note
+
+
+
+	DELETE /notes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve note
+
+
+
+	GET /notes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve notes
+
+
+
+	GET /notes
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update note
+
+
+
+	PUT /notes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| title			| 			|  <p>Note's title.</p>							|
+| body			| 			|  <p>Note's body.</p>							|
+| tags			| 			|  <p>Note's tags.</p>							|
+| owner			| 			|  <p>Note's owner.</p>							|
 
 # PasswordReset
 

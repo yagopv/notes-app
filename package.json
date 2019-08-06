@@ -1,6 +1,6 @@
 {
-  "name": "notes-app-backend",
-  "version": "0.0.0",
+  "name": "notes-app",
+  "version": "0.1.0",
   "main": "src",
   "private": true,
   "scripts": {

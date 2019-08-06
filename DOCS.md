@@ -1,4 +1,4 @@
-# hack-a-note-server v0.0.0
+# Notes app v0.0.0
 
 
 

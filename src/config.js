@@ -26,7 +26,7 @@ const config = {
     port: process.env.PORT || 9000,
     ip: process.env.IP || '0.0.0.0',
     apiRoot: process.env.API_ROOT || '',
-    defaultEmail: 'no-reply@hack-a-note-server.com',
+    defaultEmail: 'no-reply@notes-app.com',
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
@@ -41,7 +41,7 @@ const config = {
   test: {},
   development: {
     mongo: {
-      uri: 'mongodb://localhost/hack-a-note-server-dev',
+      uri: 'mongodb://localhost/notes-app-dev',
       options: {
         debug: true
       }
@@ -51,10 +51,10 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/hack-a-note-server'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/notes-app'
     }
   }
 }
-console.log('MONGODB URI', process.env.MONGODB_URI)
+
 module.exports = merge(config.all, config[config.all.env])
 export default module.exports

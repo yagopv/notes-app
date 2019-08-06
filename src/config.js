@@ -3,7 +3,7 @@ import path from 'path'
 import merge from 'lodash/merge'
 
 /* istanbul ignore next */
-const requireProcessEnv = (name) => {
+const requireProcessEnv = name => {
   if (!process.env[name]) {
     throw new Error('You must set the ' + name + ' environment variable')
   }
@@ -38,7 +38,7 @@ const config = {
       }
     }
   },
-  test: { },
+  test: {},
   development: {
     mongo: {
       uri: 'mongodb://localhost/hack-a-note-server-dev',
@@ -55,6 +55,6 @@ const config = {
     }
   }
 }
-
+console.log('MONGODB URI', process.env.MONGODB_URI)
 module.exports = merge(config.all, config[config.all.env])
 export default module.exports

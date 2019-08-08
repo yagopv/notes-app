@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { middleware as query } from 'querymen'
+import { middleware as query, Schema } from 'querymen'
 import { middleware as bodymen } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
@@ -8,6 +8,11 @@ export Note, { schema } from './model'
 
 const router = new Router()
 const { title, body, tags, owner } = schema.tree
+const tagsSchema = new Schema({
+  tags: {
+    type: [String]
+  }
+})
 
 /**
  * @api {post} /notes Create note
@@ -43,7 +48,7 @@ router.post(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
  */
-router.get('/', token({ required: true }), query(), index)
+router.get('/', token({ required: true }), query(tagsSchema), index)
 
 /**
  * @api {get} /notes/:id Retrieve note

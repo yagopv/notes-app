@@ -1,4 +1,4 @@
-# Notes app v0.0.0
+# notes-app v0.1.0
 
 
 

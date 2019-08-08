@@ -38,8 +38,7 @@ const userSchema = new Schema(
     picture: {
       type: String,
       trim: true
-    },
-    notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
+    }
   },
   {
     timestamps: true

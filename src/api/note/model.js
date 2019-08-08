@@ -11,7 +11,7 @@ const noteSchema = new Schema(
       required: true
     },
     tags: [{ type: String }],
-    owner: { type: Schema.Types.ObjectId, ref: 'User' }
+    owner: { type: Schema.Types.ObjectId }
   },
   {
     timestamps: true,

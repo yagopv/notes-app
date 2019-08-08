@@ -19,12 +19,10 @@ export const index = (
 
   return Note.count(noteQuery)
     .then(count =>
-      Note.find(noteQuery, select, cursor)
-        .populate('owner', 'name picture email')
-        .then(notes => ({
-          count,
-          rows: notes.map(note => note.view())
-        }))
+      Note.find(noteQuery, select, cursor).then(notes => ({
+        count,
+        rows: notes.map(note => note.view())
+      }))
     )
     .then(success(res))
     .catch(next)
@@ -37,10 +35,12 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const update = ({ bodymen: { body }, params }, res, next) =>
+export const update = ({ bodymen: { body }, params, user }, res, next) =>
   Note.findById(params.id)
     .then(notFound(res))
-    .then(note => (note ? Object.assign(note, body).save() : null))
+    .then(note =>
+      note ? Object.assign(note, { ...body, owner: user.id }).save() : null
+    )
     .then(note => (note ? note.view(true) : null))
     .then(success(res))
     .catch(next)

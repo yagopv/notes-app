@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { login } from './controller'
-import { password, master, github } from '../../services/passport'
+import { password, github } from '../../services/passport'
 
 const router = new Router()
 
@@ -15,10 +15,7 @@ const router = new Router()
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Master access only or invalid credentials.
  */
-router.post('/',
-  master(),
-  password(),
-  login)
+router.post('/', password(), login)
 
 /**
  * @api {post} /auth/github Authenticate with Github
@@ -29,8 +26,6 @@ router.post('/',
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Invalid credentials.
  */
-router.post('/github',
-  github(),
-  login)
+router.post('/github', github(), login)
 
 export default router

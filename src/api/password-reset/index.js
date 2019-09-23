@@ -1,6 +1,5 @@
 import { Router } from 'express'
 import { middleware as body } from 'bodymen'
-import { master } from '../../services/passport'
 import { create, show, update } from './controller'
 import { schema } from '../user'
 export PasswordReset, { schema } from './model'
@@ -18,10 +17,11 @@ const { email, password } = schema.tree
  * @apiSuccess (Success 202) 202 Accepted.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.post('/',
-  master(),
+router.post(
+  '/',
   body({ email, link: { type: String, required: true } }),
-  create)
+  create
+)
 
 /**
  * @api {get} /password-resets/:token Verify token
@@ -31,8 +31,7 @@ router.post('/',
  * @apiSuccess {Object} user User's data.
  * @apiError 404 Token has expired or doesn't exist.
  */
-router.get('/:token',
-  show)
+router.get('/:token', show)
 
 /**
  * @api {put} /password-resets/:token Submit password
@@ -43,8 +42,6 @@ router.get('/:token',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Token has expired or doesn't exist.
  */
-router.put('/:token',
-  body({ password }),
-  update)
+router.put('/:token', body({ password }), update)
 
 export default router

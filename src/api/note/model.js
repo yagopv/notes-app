@@ -10,7 +10,7 @@ const noteSchema = new Schema(
       type: String,
       required: true
     },
-    tags: [{ type: String }],
+    tags: { type: [String], required: false, default: [] },
     owner: { type: Schema.Types.ObjectId }
   },
   {

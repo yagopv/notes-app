@@ -5,7 +5,7 @@ const noteSchema = new Schema(
     title: {
       type: String
     },
-    body: {
+    content: {
       type: String
     },
     tags: { type: [String], required: false, default: [] },
@@ -28,7 +28,7 @@ noteSchema.methods = {
       // simple view
       id: this.id,
       title: this.title,
-      body: this.body,
+      content: this.content,
       tags: this.tags,
       owner: this.owner,
       createdAt: this.createdAt,

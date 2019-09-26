@@ -77,7 +77,7 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
 | title			| 			|  <p>Note's title.</p>							|
-| body			| 			|  <p>Note's body.</p>							|
+| content			| 			|  <p>Note's content.</p>							|
 | tags			| 			|  <p>Note's tags.</p>							|
 | owner			| 			|  <p>Note's owner.</p>							|
 
@@ -138,7 +138,7 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
 | title			| 			|  <p>Note's title.</p>							|
-| body			| 			|  <p>Note's body.</p>							|
+| content			| 			|  <p>Note's content.</p>							|
 | tags			| 			|  <p>Note's tags.</p>							|
 | owner			| 			|  <p>Note's owner.</p>							|
 

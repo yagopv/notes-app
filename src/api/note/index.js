@@ -7,7 +7,7 @@ import { schema } from './model'
 export Note, { schema } from './model'
 
 const router = new Router()
-const { title, body, tags, owner } = schema.tree
+const { title, content, tags, owner } = schema.tree
 const tagsSchema = new Schema({
   tags: {
     type: [String]
@@ -21,7 +21,7 @@ const tagsSchema = new Schema({
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam title Note's title.
- * @apiParam body Note's body.
+ * @apiParam content Note's content.
  * @apiParam tags Note's tags.
  * @apiParam owner Note's owner.
  * @apiSuccess {Object} note Note's data.
@@ -32,7 +32,7 @@ const tagsSchema = new Schema({
 router.post(
   '/',
   token({ required: true }),
-  bodymen({ title, body, tags, owner }),
+  bodymen({ title, content, tags, owner }),
   create
 )
 
@@ -70,7 +70,7 @@ router.get('/:id', token({ required: true }), show)
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam title Note's title.
- * @apiParam body Note's body.
+ * @apiParam content Note's content.
  * @apiParam tags Note's tags.
  * @apiParam owner Note's owner.
  * @apiSuccess {Object} note Note's data.
@@ -81,7 +81,7 @@ router.get('/:id', token({ required: true }), show)
 router.put(
   '/:id',
   token({ required: true }),
-  bodymen({ title, body, tags, owner }),
+  bodymen({ title, content, tags, owner }),
   update
 )
 

@@ -11,7 +11,11 @@ let userSession, adminSession, note
 
 beforeEach(async () => {
   const user = await User.create({ email: 'a@a.com', password: '123456' })
-  const admin = await User.create({ email: 'c@c.com', password: '123456', role: 'admin' })
+  const admin = await User.create({
+    email: 'c@c.com',
+    password: '123456',
+    role: 'admin'
+  })
   userSession = signSync(user.id)
   adminSession = signSync(admin.id)
   note = await Note.create({})
@@ -20,11 +24,17 @@ beforeEach(async () => {
 test('POST /notes 201 (admin)', async () => {
   const { status, body } = await request(app())
     .post(`${apiRoot}`)
-    .send({ access_token: adminSession, title: 'test', body: 'test', tags: 'test', owner: 'test' })
+    .send({
+      access_token: adminSession,
+      title: 'test',
+      content: 'test',
+      tags: 'test',
+      owner: 'test'
+    })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.title).toEqual('test')
-  expect(body.body).toEqual('test')
+  expect(body.content).toEqual('test')
   expect(body.tags).toEqual('test')
   expect(body.owner).toEqual('test')
 })
@@ -37,8 +47,7 @@ test('POST /notes 401 (user)', async () => {
 })
 
 test('POST /notes 401', async () => {
-  const { status } = await request(app())
-    .post(`${apiRoot}`)
+  const { status } = await request(app()).post(`${apiRoot}`)
   expect(status).toBe(401)
 })
 
@@ -59,8 +68,7 @@ test('GET /notes 401 (user)', async () => {
 })
 
 test('GET /notes 401', async () => {
-  const { status } = await request(app())
-    .get(`${apiRoot}`)
+  const { status } = await request(app()).get(`${apiRoot}`)
   expect(status).toBe(401)
 })
 
@@ -81,8 +89,7 @@ test('GET /notes/:id 401 (user)', async () => {
 })
 
 test('GET /notes/:id 401', async () => {
-  const { status } = await request(app())
-    .get(`${apiRoot}/${note.id}`)
+  const { status } = await request(app()).get(`${apiRoot}/${note.id}`)
   expect(status).toBe(401)
 })
 
@@ -96,12 +103,18 @@ test('GET /notes/:id 404 (admin)', async () => {
 test('PUT /notes/:id 200 (admin)', async () => {
   const { status, body } = await request(app())
     .put(`${apiRoot}/${note.id}`)
-    .send({ access_token: adminSession, title: 'test', body: 'test', tags: 'test', owner: 'test' })
+    .send({
+      access_token: adminSession,
+      title: 'test',
+      content: 'test',
+      tags: 'test',
+      owner: 'test'
+    })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(note.id)
   expect(body.title).toEqual('test')
-  expect(body.body).toEqual('test')
+  expect(body.content).toEqual('test')
   expect(body.tags).toEqual('test')
   expect(body.owner).toEqual('test')
 })
@@ -114,15 +127,20 @@ test('PUT /notes/:id 401 (user)', async () => {
 })
 
 test('PUT /notes/:id 401', async () => {
-  const { status } = await request(app())
-    .put(`${apiRoot}/${note.id}`)
+  const { status } = await request(app()).put(`${apiRoot}/${note.id}`)
   expect(status).toBe(401)
 })
 
 test('PUT /notes/:id 404 (admin)', async () => {
   const { status } = await request(app())
     .put(apiRoot + '/123456789098765432123456')
-    .send({ access_token: adminSession, title: 'test', body: 'test', tags: 'test', owner: 'test' })
+    .send({
+      access_token: adminSession,
+      title: 'test',
+      content: 'test',
+      tags: 'test',
+      owner: 'test'
+    })
   expect(status).toBe(404)
 })
 
@@ -141,8 +159,7 @@ test('DELETE /notes/:id 401 (user)', async () => {
 })
 
 test('DELETE /notes/:id 401', async () => {
-  const { status } = await request(app())
-    .delete(`${apiRoot}/${note.id}`)
+  const { status } = await request(app()).delete(`${apiRoot}/${note.id}`)
   expect(status).toBe(401)
 })
 
